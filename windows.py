@@ -15,7 +15,7 @@ class MainWindow(QMainWindow):
         with open(path, 'r') as file:
             model =json.load(file)
 
-        models.verify_model(model)
+        print(models.verify_model(model))
     
 
 

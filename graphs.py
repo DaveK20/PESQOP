@@ -36,10 +36,5 @@ def plot_graph(x,y):
     plt.tight_layout()
     plt.show()
 
-if __name__ == "__main__":
-    solve('geladeiras', LpMaximize, 100*x+50*y, [
-        x<=1500,
-        y<=6000,
-        10*x+8*y<=25000,
-        x+y<=4500
-    ])
+if __name__ == '__main__':
+    pass
