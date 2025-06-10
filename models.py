@@ -11,11 +11,15 @@ def solve(objective, restrictions:list):
         model += restriction
 
     status = model.solve() 
+    status = LpStatus[status]
+    
+    if status != 'Optimal':
+        return None
+    
     return {
         "x": value(x),
         "y": value(y),
         "z": value(model.objective),
-        'status': status 
     }
 
 def verify_model(model):

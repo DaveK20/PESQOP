@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Programa de Programação Linear</string>
   </property>
   <property name="styleSheet">
    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
@@ -230,7 +230,11 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <widget class="QSpinBox" name="demanda_min_x"/>
+             <widget class="QSpinBox" name="demanda_min_x">
+              <property name="maximum">
+               <number>99999</number>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QSpinBox" name="demanda_max_x">
@@ -254,7 +258,11 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
-             <widget class="QSpinBox" name="demanda_min_y"/>
+             <widget class="QSpinBox" name="demanda_min_y">
+              <property name="maximum">
+               <number>99999</number>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QSpinBox" name="demanda_max_y">

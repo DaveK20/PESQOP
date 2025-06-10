@@ -141,3 +141,11 @@ class GraphWidget(QWidget):
         self.ax.grid(True, alpha=self.GRID_ALPHA) # Added alpha to grid
         self.ax.legend()
         self.canvas.draw()
+
+    def clear_plot(self):
+        """
+        Clears the current plot in the GraphWidget.
+        """
+        self.figure.clear()
+        self.ax = self.figure.add_subplot(111)
+        self.canvas.draw()
