@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import uic
-from pulp import LpMaximize, LpMinimize
+from graphs import GraphWidget
 
 import models
 
@@ -9,6 +9,8 @@ class MainWindow(QMainWindow):
         super().__init__()
         uic.loadUi(r"ui/main.ui", self)
 
+        self.grafico = GraphWidget()
+        self.widget_2.layout().addWidget(self.grafico)
         self.solve_btn.clicked.connect(lambda: self.read_model())
 
         self.model = {
@@ -18,24 +20,60 @@ class MainWindow(QMainWindow):
         }
 
     def read_model(self):
-        objective = self.lucro_x.value() * models.x + self.lucro_y.value() * models.y
+        lucro_x = self.lucro_x.value()
+        lucro_y = self.lucro_y.value()
+        consumo_1_x = self.consumo_1_x.value()
+        consumo_1_y = self.consumo_1_y.value()
+        materia_1 = self.materia_1.value()
+        consumo_2_x = self.consumo_2_x.value()
+        consumo_2_y = self.consumo_2_y.value()
+        materia_2 = self.materia_2.value()
+        demanda_min_x = self.demanda_min_x.value()
+        demanda_max_x = self.demanda_max_x.value()
+        demanda_min_y = self.demanda_min_y.value()
+        demanda_max_y = self.demanda_max_y.value()
+
+        objective = lucro_x * models.x + lucro_y * models.y
+
         restrictions = [
-            self.consumo_1_x.value() * models.x + self.consumo_1_y.value() * models.y <= self.materia_1.value(),
-            self.consumo_2_x.value() * models.x + self.consumo_2_y.value() * models.y <= self.materia_2.value(),
+            consumo_1_x * models.x + consumo_1_y * models.y <= materia_1,
+            consumo_2_x * models.x + consumo_2_y * models.y <= materia_2,
 
-            models.x >= self.demanda_min_x.value(),
-            models.x <= self.demanda_max_x.value(),
+            models.x >= demanda_min_x,
+            models.x <= demanda_max_x,
 
-            models.y >= self.demanda_min_y.value(),
-            models.y <= self.demanda_max_y.value()
+            models.y >= demanda_min_y,
+            models.y <= demanda_max_y
         ]
     
         result = models.solve(objective, restrictions)
         self.x_value.setText(str(result['x']))
         self.y_value.setText(str(result['y']))
         self.z_value.setText(str(result['z']))
-        print(result['status'])
+        
+        restricoes_numericas = [
+        (consumo_1_x, consumo_1_y, "<=", materia_1),
+        (consumo_2_x, consumo_2_y, "<=", materia_2),
 
+        (1, 0, ">=", demanda_min_x),
+        (1, 0, "<=", demanda_max_x),
+
+        (0, 1, ">=", demanda_min_y),
+        (0, 1, "<=", demanda_max_y)
+        ]
+
+        # Plotando no widget de gráfico
+        self.grafico.plot_solution(
+            result, 
+            lucro_x, 
+            lucro_y, 
+            restricoes_numericas,
+            min_x=demanda_min_x,
+            max_x=demanda_max_x,
+            min_y=demanda_min_y,
+            max_y=demanda_max_y)
+
+    
 if __name__ == "__main__":
     import sys
     from PyQt5.QtWidgets import QApplication

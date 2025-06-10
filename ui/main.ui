@@ -22,6 +22,12 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QWidget" name="widget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>500</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="maximumSize">
        <size>
         <width>500</width>
@@ -354,9 +360,6 @@
      <widget class="QWidget" name="widget_2" native="true">
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
-        <widget class="QWidget" name="widget_3" native="true"/>
-       </item>
-       <item>
         <widget class="QFrame" name="frame_3">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -382,6 +385,12 @@
            <layout class="QHBoxLayout" name="horizontalLayout_6">
             <item>
              <widget class="QFrame" name="frame_6">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="frameShape">
                <enum>QFrame::Panel</enum>
               </property>
@@ -411,6 +420,12 @@
             </item>
             <item>
              <widget class="QFrame" name="frame_8">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="frameShape">
                <enum>QFrame::Panel</enum>
               </property>
@@ -431,7 +446,7 @@
                <item>
                 <widget class="QLabel" name="label_19">
                  <property name="text">
-                  <string>Unidades do Produto x</string>
+                  <string>Unidades do Produto y</string>
                  </property>
                 </widget>
                </item>
@@ -440,6 +455,12 @@
             </item>
             <item>
              <widget class="QFrame" name="frame_7">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="frameShape">
                <enum>QFrame::Panel</enum>
               </property>
@@ -460,7 +481,7 @@
                <item>
                 <widget class="QLabel" name="label_20">
                  <property name="text">
-                  <string>Unidades do Produto x</string>
+                  <string>Lucro</string>
                  </property>
                 </widget>
                </item>
@@ -477,37 +498,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1053</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuArquivo">
-    <property name="title">
-     <string>Arquivo</string>
-    </property>
-    <addaction name="actionNovo"/>
-    <addaction name="actionAbrir"/>
-    <addaction name="separator"/>
-    <addaction name="actionSalvar"/>
-    <addaction name="actionSalvar_como"/>
-    <addaction name="separator"/>
-    <addaction name="actionFechar"/>
-    <addaction name="actionSair"/>
-   </widget>
-   <widget class="QMenu" name="menuEditar">
-    <property name="title">
-     <string>Ajuda</string>
-    </property>
-   </widget>
-   <addaction name="menuArquivo"/>
-   <addaction name="menuEditar"/>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionAbrir">
    <property name="text">
     <string>Abrir...</string>

@@ -10,12 +10,12 @@ def solve(objective, restrictions:list):
     for restriction in restrictions:
         model += restriction
 
-    status =  model.solve() 
+    status = model.solve() 
     return {
         "x": value(x),
         "y": value(y),
         "z": value(model.objective),
-        "status": status
+        'status': status 
     }
 
 def verify_model(model):
