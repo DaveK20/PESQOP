@@ -1,22 +1,22 @@
 from pulp import *
 
-model = None
-x = LpVariable("x")
-y = LpVariable("y") 
+x = LpVariable("x", 0)
+y = LpVariable("y", 0) 
 
-def solve(title:str, sense, objective, restrictions:list):
-    global model 
+def solve(objective, restrictions:list):
+    model = LpProblem(sense=LpMaximize)
     
-    model = LpProblem(title, sense)
-
     model += objective
     for restriction in restrictions:
         model += restriction
 
-    status=  model.solve() 
-    print(value(x))
-    print(value(y))
-    print(value(model.objective))
+    status =  model.solve() 
+    return {
+        "x": value(x),
+        "y": value(y),
+        "z": value(model.objective),
+        "status": status
+    }
 
 def verify_model(model):
     expected_keys = ['title', 'objective', 'sense', 'restrictions']
@@ -24,7 +24,7 @@ def verify_model(model):
     return keys == expected_keys
 
 if __name__ == "__main__":
-    solve('geladeiras', LpMaximize, 100*x+50*y, [
+    solve(100*x+50*y, [
         x<=1500,
         y<=6000,
         10*x+8*y<=25000,

@@ -1,8 +1,17 @@
 {
     "title": "title",
-    "objective": "10*x + 5*y",
-    "sense": "maximize ou minimize",
+    "objective": {
+        "x": 10,
+        "y": 5
+    },
+    "sense": 1,
     "restrictions": [
-        "2*x +3*y <= 7"
+        {
+            "name": "nome"
+            "x": 2,
+            "y": 3,
+            "op": <=,
+            "z"=7
+        }
     ]
 }
